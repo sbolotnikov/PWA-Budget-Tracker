@@ -15,6 +15,7 @@ const transactionSchema = new Schema(
     },
     date: {
       type: Date,
+      unique: true,
       default: Date.now
     }
   }
