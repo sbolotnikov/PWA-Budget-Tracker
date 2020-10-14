@@ -1,10 +1,3 @@
-const indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB ||
-  window.shimIndexedDB;
-
 let db;
 // create a new db request for a "budget" database.
 const request = indexedDB.open("budget", 1);
@@ -37,6 +30,9 @@ function saveRecord(record) {
 
   // add record to your store with add method.
   store.add(record);
+
+
+  console.log(store);
 }
 
 function checkDatabase() {
@@ -49,6 +45,11 @@ function checkDatabase() {
 
   getAll.onsuccess = function() {
     if (getAll.result.length > 0) {
+
+
+      console.log(getAll.result)
+
+
       fetch("/api/transaction/bulk", {
         method: "POST",
         body: JSON.stringify(getAll.result),
@@ -57,7 +58,8 @@ function checkDatabase() {
           "Content-Type": "application/json"
         }
       })
-      .then(response => response.json())
+      .then(response => {response.json();
+      console.log(response.json())})
       .then(() => {
         // if successful, open a transaction on your pending db
         const transaction = db.transaction(["pending"], "readwrite");
@@ -67,6 +69,9 @@ function checkDatabase() {
 
         // clear all items in your store
         store.clear();
+      })
+      .catch(err => {
+        console.log(err);
       });
     }
   };
