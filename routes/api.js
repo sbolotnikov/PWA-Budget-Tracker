@@ -51,7 +51,7 @@ router.get("/api/proxy_envs", (req, res) => {
   var host = req.headers.host;
   res.header('Access-Control-Allow-Origin', '*');
   if (host===process.env.CITE_NAME)
-  res.send({
+  res.status(200).send({
     apiKey:process.env.APIKEY,
     authDomain:process.env.AUTH_DOMAIN,
     databaseURL:process.env.DATABASE_URL,
@@ -62,7 +62,7 @@ router.get("/api/proxy_envs", (req, res) => {
     cloudName:process.env.CLOUDNAME,
     cloudPreset:process.env.CLOUD_PRESET
   })
-  else res.send({message: "Hello from the proxy server! "+host});
+  else res.status(404).send({message: "Hello from the proxy server! "+host});
    
 });
 // route that gets the link to google picture by reference
