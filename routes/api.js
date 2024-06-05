@@ -62,7 +62,7 @@ router.get("/api/proxy_envs", (req, res) => {
     cloudName:process.env.CLOUDNAME,
     cloudPreset:process.env.CLOUD_PRESET
   })
-  else res.status(404).send({message: "Hello from the proxy server! "+host});
+  else res.status(200).send({message: "Hello from the proxy server! "+host});
    
 });
 // route that gets the link to google picture by reference
