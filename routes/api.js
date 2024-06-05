@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Transaction = require("../models/transaction.js");
 
+
 router.post("/api/transaction", ({body}, res) => {
   Transaction.create(body)
     .then(dbTransaction => {
@@ -46,7 +47,23 @@ router.get("/proxy/api/0/v1:link", function (req, res) {
     });
 
 });
+router.get("/api/proxy_envs", (req, res) => {  
+  var host = req.headers.host;
+  if (host===process.env.CITE_NAME)
+  res.json({
+    apiKey:process.env.APIKEY,
+    authDomain:process.env.AUTH_DOMAIN,
+    databaseURL:process.env.DATABASE_URL,
+    projectId:process.env.PROJECT_ID,
+    storageBucket:process.env.STORAGE_BUCKET,
+    messagingSenderId:process.env.MESSAGING_SENDER_ID,
+    appId:process.env.APP_ID,
+    cloudName:process.env.CLOUDNAME,
+    cloudPreset:process.env.CLOUD_PRESET
+  })
+  else res.json({message: "Hello from the proxy server! "+host});
 
+});
 // route that gets the link to google picture by reference
 router.get("/proxy/api/1/v1:link", function (req, res) {
   let url_1 = req.params.link.slice(7) + process.env.APIKey;
