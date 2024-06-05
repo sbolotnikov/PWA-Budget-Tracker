@@ -51,8 +51,8 @@ router.get("/api/proxy_envs", (req, res) => {
   let origin = req.headers.origin;
   res.header('Access-Control-Allow-Origin', '*');
   // if (origin===process.env.CITE_NAME)
-  res.send({message:JSON.stringify({
-    apiKey:process.env.APIKEY,
+  res.send({
+    apiKey:process.env.APIKEY1,
     authDomain:process.env.AUTH_DOMAIN,
     databaseURL:process.env.DATABASE_URL,
     projectId:process.env.PROJECT_ID,
@@ -62,7 +62,7 @@ router.get("/api/proxy_envs", (req, res) => {
     cloudName:process.env.CLOUDNAME,
     cloudPreset:process.env.CLOUD_PRESET,
     message:"well just this is a test"
-  })})
+  })
   // else res.status(200).send({message: "Hello from the proxy server! "+origin});
    
 });
