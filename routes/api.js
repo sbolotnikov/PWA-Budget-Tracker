@@ -51,7 +51,7 @@ router.get("/api/proxy_envs", (req, res) => {
   let origin = req.headers.origin;
   res.header('Access-Control-Allow-Origin', '*');
   // if (origin===process.env.CITE_NAME)
-  res.status(200).send({
+  res.status(200).json({
     apiKey:process.env.APIKEY,
     authDomain:process.env.AUTH_DOMAIN,
     databaseURL:process.env.DATABASE_URL,
