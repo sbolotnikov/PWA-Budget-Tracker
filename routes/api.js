@@ -47,25 +47,25 @@ router.get("/proxy/api/0/v1:link", function (req, res) {
     });
 
 });
-router.get("/api/proxy_envs", (req, res) => {  
-  let origin = req.headers.origin;
-  res.header('Access-Control-Allow-Origin', '*');
-  // if (origin===process.env.CITE_NAME)
-  res.send({
-    apiKey:process.env.APIKEY1,
-    authDomain:process.env.AUTH_DOMAIN,
-    databaseURL:process.env.DATABASE_URL,
-    projectId:process.env.PROJECT_ID,
-    storageBucket:process.env.STORAGE_BUCKET,
-    messagingSenderId:process.env.MESSAGING_SENDER_ID,
-    appId:process.env.APP_ID,
-    cloudName:process.env.CLOUDNAME,
-    cloudPreset:process.env.CLOUD_PRESET,
-    message:"well just this is a test"
-  })
-  // else res.status(200).send({message: "Hello from the proxy server! "+origin});
+// router.get("/api/proxy_envs", (req, res) => {  
+//   let origin = req.headers.origin;
+//   res.header('Access-Control-Allow-Origin', '*');
+//   if (origin===process.env.CITE_NAME)
+//   res.send({
+//     apiKey:process.env.APIKEY1,
+//     authDomain:process.env.AUTH_DOMAIN,
+//     databaseURL:process.env.DATABASE_URL,
+//     projectId:process.env.PROJECT_ID,
+//     storageBucket:process.env.STORAGE_BUCKET,
+//     messagingSenderId:process.env.MESSAGING_SENDER_ID,
+//     appId:process.env.APP_ID,
+//     cloudName:process.env.CLOUDNAME,
+//     cloudPreset:process.env.CLOUD_PRESET,
+//     message:"well just this is a test"
+//   })
+//   else res.status(200).send({message: "Hello from the proxy server! "+origin});
    
-});
+// });
 // route that gets the link to google picture by reference
 router.get("/proxy/api/1/v1:link", function (req, res) {
   let url_1 = req.params.link.slice(7) + process.env.APIKey;
